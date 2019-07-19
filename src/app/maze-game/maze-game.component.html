@@ -1,3 +1,23 @@
-<p *ngIf="board">
-  maze-game works!
-</p>
+<div class="container" style="padding:20px">
+  <div *ngIf="board">
+      <div class="row" style="height:50px" *ngFor="let row of board.board">
+          <div class="col-1" *ngFor="let cel of row" [ngStyle]="{ 'border-top-style': cel.up ? 'none':'solid', 'border-right-style': cel.right ? 'none':'solid',
+          'border-bottom-style': cel.down ? 'none':'solid', 'border-left-style': cel.left ? 'none':'solid', 'padding':'10px'}" >
+            <div *ngIf="cel.players.length > 0">
+              <div *ngFor="let player of cel.players" [ngStyle]= "{'color':'player.color', 'position':'absolute'}">
+                *
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="row" style="padding:30px">
+    <button class="col-2" (click)="move(player, board, 'Left')">Move Left</button>
+    <button class="col-2" (click)="move(player, board, 'Right')">Move Right</button>
+    <button class="col-2" (click)="move(player, board, 'Down')">Move Down</button>
+    <button class="col-2" (click)="move(player, board, 'Up')">Move Up</button>
+  </div>
+</div>
+
+

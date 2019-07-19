@@ -19,7 +19,7 @@ export class PlayerService {
   }
 
   move(player: Player, board: Board, sides: Sides): Observable<Board> {
-    return this.http.put<Board>("http://localhost:8080/players", {player: player, board: board, sides: sides});
+    return this.http.put<Board>("http://localhost:8080/players", {player: player, board: board, side: sides});
   }
 
   nextGame(player: Player, boardIndex: number): Observable<Board> {

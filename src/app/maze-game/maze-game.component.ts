@@ -5,6 +5,7 @@ import { BoardService } from '../board.service';
 import { Sides } from '../Sides';
 import { Board } from '../Board';
 import { Player } from 'src/Player';
+import { Cell } from '../Cell';
 
 @Component({
   selector: 'app-maze-game',
@@ -45,22 +46,29 @@ export class MazeGameComponent implements OnInit {
     });
   }
 
+  firstGame(boards: Boards) {
+    this.board = boards.boardList[0];
+  }
+
   getBoards() {
     this.boardService.getBoards()
       .subscribe(boards =>  {
         this.boards = boards;
-        this.board = boards[0];
+        this.firstGame(this.boards);
       });
   }
 
   move(player: Player, board: Board, side: Sides) {
+    console.log(player);
+    console.log(board);
+    console.log(side);
     this.playerService.move(player, board, side)
     .subscribe(board => this.board = board);
   }
 
   //make call to server for next game
   nextGame(id: number) {
-     var index = this.boards.boards.findIndex(board => board.id == id);
+     var index = this.boards.boardList.findIndex(board => board.id == id);
   
      this.playerService.nextGame(this.player, index)
      .subscribe(board => this.board = board);
@@ -71,9 +79,25 @@ export class MazeGameComponent implements OnInit {
     .subscribe(board => this.board = board);
   }
 
+  buildBoard() {
+    this.board.board.forEach(row => 
+
+      row.forEach(cell => {
+        
+    }))
+  }
+
+  // getStyle(cell: Cell) {
+  //   var style = {
+      
+  //   }
+
+  //   cell.down ? 
+  // }
+
   //send request to the server moving this player to the next game
   getNextBoard(index: number) {
-    this.board = this.boards.boards[index];
+    this.board = this.boards.boardList[index];
   }
 
   ngOnInit() {

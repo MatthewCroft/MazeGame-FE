@@ -1,6 +1,6 @@
 export enum Sides {
-    LEFT,
-    RIGHT,
-    UP,
-    DOWN,
+    Left,
+    Right,
+    Up,
+    Down,
 };
