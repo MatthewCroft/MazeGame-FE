@@ -1,6 +1,10 @@
 <div class="container" style="padding:20px">
+  <p>
+    MazeGame: Use the buttons to reach the finish of the Maze, once at the end a new maze will be generated
+    and repeat the process.
+  </p>
   <div *ngIf="board">
-      <div class="row" style="height:50px" *ngFor="let row of board.board">
+      <div class="row" style="height:50px; padding-left: 120px" *ngFor="let row of board.board">
           <div class="col-1" *ngFor="let cel of row" [ngStyle]="{ 'border-top-style': cel.up ? 'none':'solid', 'border-right-style': cel.right ? 'none':'solid',
           'border-bottom-style': cel.down ? 'none':'solid', 'border-left-style': cel.left ? 'none':'solid', 'padding':'10px'}" >
             <div *ngIf="cel.players.length > 0">
@@ -13,11 +17,27 @@
   </div>
 
   <div class="row" style="padding:30px">
-    <button class="col-2" (click)="move(player, board, 'Left')">Move Left</button>
-    <button class="col-2" (click)="move(player, board, 'Right')">Move Right</button>
-    <button class="col-2" (click)="move(player, board, 'Down')">Move Down</button>
-    <button class="col-2" (click)="move(player, board, 'Up')">Move Up</button>
+    <button class="col-3" (click)="move(player, board, 'Left')">Move Left</button>
+    <button class="col-3" (click)="move(player, board, 'Right')">Move Right</button>
+    <button class="col-3" (click)="move(player, board, 'Down')">Move Down</button>
+    <button class="col-3" (click)="move(player, board, 'Up')">Move Up</button>
   </div>
+
+
+  <p>
+    Author: Matthew Croft
+  </p>
+
+  <p>
+    Link to
+   <a href="https://github.com/MatthewCroft/MazeGame-FE">Front End Code </a>
+  </p>
+
+  <p>
+    Link to: 
+    <a href="https://github.com/MatthewCroft/MazeGame">Back End Code </a>
+  </p>
+
 </div>
 
 
