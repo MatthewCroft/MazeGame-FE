@@ -79,22 +79,6 @@ export class MazeGameComponent implements OnInit {
     .subscribe(board => this.board = board);
   }
 
-  buildBoard() {
-    this.board.board.forEach(row => 
-
-      row.forEach(cell => {
-        
-    }))
-  }
-
-  // getStyle(cell: Cell) {
-  //   var style = {
-      
-  //   }
-
-  //   cell.down ? 
-  // }
-
   //send request to the server moving this player to the next game
   getNextBoard(index: number) {
     this.board = this.boards.boardList[index];

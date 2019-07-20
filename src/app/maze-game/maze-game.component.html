@@ -4,7 +4,7 @@
           <div class="col-1" *ngFor="let cel of row" [ngStyle]="{ 'border-top-style': cel.up ? 'none':'solid', 'border-right-style': cel.right ? 'none':'solid',
           'border-bottom-style': cel.down ? 'none':'solid', 'border-left-style': cel.left ? 'none':'solid', 'padding':'10px'}" >
             <div *ngIf="cel.players.length > 0">
-              <div *ngFor="let player of cel.players" [ngStyle]= "{'color':'player.color', 'position':'absolute'}">
+              <div *ngFor="let player of cel.players" [ngStyle]= "{'color':player.color, 'position':'absolute'}" style="width: 20px; height: 20px;">
                 *
               </div>
             </div>
