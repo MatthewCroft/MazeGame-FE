@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { PlayerService } from '../player.service';
 import { Boards } from '../Boards';
 import { BoardService } from '../board.service';
@@ -6,6 +6,7 @@ import { Sides } from '../Sides';
 import { Board } from '../Board';
 import { Player } from 'src/Player';
 import { Cell } from '../Cell';
+import { EventManager } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-maze-game',
@@ -21,6 +22,25 @@ export class MazeGameComponent implements OnInit {
 
   constructor(private playerService: PlayerService,
     private boardService: BoardService) { }
+
+  @HostListener('window:keyup', ['$event'])
+  detectKeys(event: KeyboardEvent) {
+
+    if(event.keyCode == 39) {
+      this.move(this.player, this.board, Sides.Right);
+    }
+    if (event.keyCode == 38) {
+      this.move(this.player, this.board, Sides.Down);
+    }
+    if (event.keyCode == 40) {
+      this.move(this.player, this.board, Sides.Up);
+    }
+    if (event.keyCode == 37) {
+      this.move(this.player, this.board, Sides.Left);
+    }
+
+
+  }
 
   getUserId() {
     this.uuid = Math.random() * 1000;

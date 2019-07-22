@@ -5,5 +5,6 @@ export class Cell {
     right: boolean;
     up: boolean;
     down: boolean;
+    isLast: boolean;
     players: Player [];
 }
