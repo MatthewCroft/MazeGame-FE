@@ -25,5 +25,4 @@ export class PlayerService {
   nextGame(player: Player, boardIndex: number): Observable<Board> {
     return this.http.put<Board>("http://localhost:8080/players/nextgame", { player: player, boardIndex: boardIndex });
   }
-
 }

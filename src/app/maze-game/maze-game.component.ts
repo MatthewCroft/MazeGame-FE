@@ -47,15 +47,6 @@ export class MazeGameComponent implements OnInit {
     this.startGame(this.uuid);
   }
 
-  //Stole this from the internet
-  getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-  }
 
   startGame(uuid: number) {
     var color = this.getRandomColor();
@@ -66,28 +57,31 @@ export class MazeGameComponent implements OnInit {
     });
   }
 
-  firstGame(boards: Boards) {
-    this.board = boards.boardList[0];
-  }
-
   getBoards() {
     this.boardService.getBoards()
       .subscribe(boards =>  {
         this.boards = boards;
-        this.firstGame(this.boards);
+        this.board = boards.boardList[0];
+        this.getBoardUpdates(boards.boardList[0]);
       });
   }
 
   move(player: Player, board: Board, side: Sides) {
-    console.log(player);
-    console.log(board);
-    console.log(side);
     this.playerService.move(player, board, side)
     .subscribe(board => this.board = board);
   }
 
+  getBoardUpdates(updateBoard: Board) {
+    this.boardService.getBoard(updateBoard.id)
+    .subscribe(board => this.board = board);
+    
+    setTimeout(() => {
+      this.getBoardUpdates(this.board);
+    }, 1000);
+  }
+
   //make call to server for next game
-  nextGame(id: number) {
+  nextGame(id: String) {
      var index = this.boards.boardList.findIndex(board => board.id == id);
   
      this.playerService.nextGame(this.player, index)
@@ -106,6 +100,16 @@ export class MazeGameComponent implements OnInit {
 
   ngOnInit() {
     this.getUserId();
+  }
+
+  //Stole this from the internet
+  getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
   }
 
 }

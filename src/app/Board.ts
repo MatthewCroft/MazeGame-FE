@@ -1,6 +1,6 @@
 import { Cell } from './Cell';
 
 export class Board {
-    id: number;
+    id: string;
     board: Cell[][];
 }

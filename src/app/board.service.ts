@@ -16,7 +16,7 @@ export class BoardService {
     return this.http.get<Boards>("http://localhost:8080/mazes");
   }
 
-  getBoard(id: String): Observable<Board> {
+  getBoard(id: string): Observable<Board> {
     return this.http.get<Board>("http://localhost:8080/mazes/"+id);
   }
 
